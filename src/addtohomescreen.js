@@ -224,6 +224,10 @@ ath.doLog = function (logStr) {
 };
 
 ath.Class = function (options) {
+	// In case 'options' is not provided
+	if ('null' == options) {
+		options = {};
+	}
 	// class methods
 	this.doLog = ath.doLog;
 
