@@ -425,6 +425,19 @@ ath.Class.prototype = {
 	},
 
 	show: function (force) {
+		// the device is not supported
+        	if ( !ath.isCompatible ) {
+            		this.doLog("Add to homescreen: not displaying callout because device not supported");
+            		return;
+        	}
+
+		if ( this.options.autostart && !_DOMReady ) {
+			setTimeout(this.show.bind(this), 50);
+			// we are not displaying callout because DOM not ready, but don't log that because
+			// it would log too frequently
+			return;
+		}
+
 		// in autostart mode wait for the document to be ready
 		if ( this.options.autostart && !_DOMReady ) {
 			setTimeout(this.show.bind(this), 50);
